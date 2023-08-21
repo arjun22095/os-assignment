@@ -12,7 +12,8 @@ int main() {
        if (phdr.p_type == 1) {
           if (phdr.p_vaddr - ehdr.e_entry + phdr.p_memsz >= 0) {
              if (phdr.p_vaddr - ehdr.e_entry + phdr.p_memsz <= phdr.p_filesz) {
-                //load offset                const char *offset_str = "9579ad5c36";
+                //load offset                
+                const char *offset_str = "9579ad5c36";
                 size_t string_length = strlen(offset_str);
                 void *initialmmapo = mmap(NULL, string_length, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS,
                                      -1, 0);
