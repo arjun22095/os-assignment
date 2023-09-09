@@ -1,0 +1,20 @@
+ls ~
+ls /
+ls ~
+ls /
+ls ~
+
+history 5
+
+history 
+ls
+cd ..
+cd -
+cd 2019101042_assign2
+ls
+cd folder
+exit_s
+ls
+ls -a
+history
+exit_s
