@@ -1,0 +1,3 @@
+/home/arj/CLionProjects/os_as3/cmake-build-debug/CMakeFiles/os_as3.dir
+/home/arj/CLionProjects/os_as3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/arj/CLionProjects/os_as3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
