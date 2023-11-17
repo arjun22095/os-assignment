@@ -3,9 +3,10 @@
 #include <functional>
 #include <stdlib.h>
 #include <cstring>
+#include <chrono>
 
 
-int DEBUG = 1;
+int DEBUG = 0;
 #define dprint if (DEBUG == 1)printf
 
 // Simple-Parallel-For : Args Struct
@@ -41,8 +42,7 @@ void parallel_for(int low, int high, std::function<void(int)> &&lambda, int numT
 	dprint("Simple-Parallel-For Started\n");
 
 	// Clocking the time
-	clock_t start_t, end_t;
-	double total_t;
+	auto start = std::chrono::high_resolution_clock::now();
 
 	// Creating pthread_t array of numThread length
 	pthread_t threads[numThreads];
@@ -73,9 +73,9 @@ void parallel_for(int low, int high, std::function<void(int)> &&lambda, int numT
 	}
 
 	// Clocking the end time and calculating the execution time
-	end_t = clock();
-	total_t = (double) (end_t - start_t) / CLOCKS_PER_SEC;
-	printf("Simple-Parallel-For Started Completed! Time taken : %f s\n", total_t);
+	auto stop = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+	printf("Simple-Parallel-For Started Completed! Time taken : %ld ms\n", duration.count());
 }
 
 // ------
@@ -159,8 +159,7 @@ void *nested_thread_func(void *arg) {
 void parallel_for(int low1, int high1, int low2, int high2, std::function<void(int, int)> &&lambda, int numThreads) {
 	dprint("Nested-Parallel-For execution started\n");
 	// Clocking the time
-	clock_t start_t, end_t;
-	double total_t;
+	auto start = std::chrono::high_resolution_clock::now();
 
 	// Creating pthread_t array of numThread length
 	pthread_t threads[numThreads];
@@ -193,9 +192,9 @@ void parallel_for(int low1, int high1, int low2, int high2, std::function<void(i
 	}
 
 	// Calculating the execution time of the loop
-	end_t = clock();
-	total_t = (double) (end_t - start_t) / CLOCKS_PER_SEC;
-	printf("Nested-Parallel-For Execution Completed! Time taken %f s\n", total_t);
+	auto stop = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+	printf("Nested-Parallel-For Started Completed! Time taken : %ld ms\n", duration.count());
 }
 
 // Custom implemented functions over ---
@@ -241,4 +240,3 @@ int main(int argc, char **argv) {
 }
 
 #define main user_main
-
